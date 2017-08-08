@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Address Quality Check</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="parserdemo.js"></script>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body ng-app="addressApp" ng-controller="addressController">
+	<h2 align="center">TR Data Quality Demo - Name and Address Quality
+		Check</h2>
+	<div class="container-fluid jumbotron">
+		<div>
+			<table class="table">
+				<tr>
+					<td><input type="file" file-model="myFile"
+						file-reader="fileContent" /></td>
+					<td><button ng-click="uploadFile()">Upload</button></td>
+				</tr>
+			</table>
+			<br>
+			<div ng-if="fileError" class="alert alert-danger" role="alert">
+				<strong>Error</strong> Please select a file to upload.
+			</div>
+			<div align="left">
+				<table class="table table-condensed">
+					<tr ng-if="headers">
+						<th></th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Company</th>
+						<th>Street Address</th>
+						<th>City</th>
+						<th>State</th>
+						<th>Zip Code</th>
+					</tr>
+					<tbody ng-init="errors = validate(address)"
+						ng-repeat="address in addresses">
+						<tr>
+							<td><button class="btn btn-xs" data-toggle="collapse"
+									data-target="#row{{$index}}">{{errors.length}}</button></td>
+							<td>{{address.fname}}</td>
+							<td>{{address.lname}}</td>
+							<td>{{address.company}}</td>
+							<td>{{address.streetAddress}}</td>
+							<td>{{address.city}}</td>
+							<td>{{address.state}}</td>
+							<td>{{address.zipCode}}</td>
+						</tr>
+						<tr id="row{{$index}}" ng-if="errors.length > 0" class="collapse">
+							<td colspan="12" id="errors"><label>Validation
+									Errors</label>
+								<ul class="list-inline">
+									<li ng-repeat="error in errors">{{ error }}</li>
+								</ul></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="panel-footer col-sm-8 col-sm-offset-2" align="center">Addresses
+			that follow USPS standards are highlighted in green.<br>All addresses
+			that do not follow USPS standardization are highlighted in red.</div>
+	</div>
+</body>
+</html>

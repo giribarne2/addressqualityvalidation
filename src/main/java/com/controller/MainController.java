@@ -1,11 +1,11 @@
 package com.controller;
 
 import java.io.BufferedReader;
-//import java.io.ByteArrayInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-//import java.io.InputStream;
-//import java.io.InputStreamReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,10 +31,10 @@ public class MainController {
 	// "/usr/apache/apache-tomcat-8.5.14/uploads/";
 
 	// local save directory
-	private static String UPLOADED_FOLDER = "C:\\Users\\iribarneg\\Documents\\workspace-sts\\addressqualityvalidation\\src\\main\\resources\\uploads\\";
-	private static String CSV_FILE;
+	//private static String UPLOADED_FOLDER = "C:\\Users\\iribarneg\\Documents\\workspace-sts\\addressqualityvalidation\\src\\main\\resources\\uploads\\";
+	//private static String CSV_FILE;
 
-	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	@ResponseBody
 	public String singleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
 		List<Entry> response;
@@ -56,7 +56,7 @@ public class MainController {
 		String json = gson.toJson(response);
 
 		return json;
-	}
+	}*/
 	
 
 	public List<Entry> parser(String filename) {
@@ -96,18 +96,18 @@ public class MainController {
 		}
 		return results;
 	}
-	/*	@RequestMapping(value = "/uploadBlob", method = RequestMethod.POST)
+		@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	@ResponseBody
 	public String blobFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-		CSVFile csvFile = new CSVFile();
+		//CSVFile csvFile = new CSVFile();
 		List<Entry> response;
 		byte[] bytes = null;
 		try {
 
 			// Get the file and save it somewhere
 			bytes = file.getBytes();
-			csvFile.setName(file.getOriginalFilename());
-			csvFile.setFiledata(bytes);			
+			//csvFile.setName(file.getOriginalFilename());
+			//csvFile.setFiledata(bytes);			
 			//session.save
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -119,10 +119,10 @@ public class MainController {
 		String json = gson.toJson(response);
 
 		return json;
-	}*/
+	}
 	
 
-/*	public List<Entry> blobParser(byte[] filedata) {
+	public List<Entry> blobParser(byte[] filedata) {
 
 		String line = "";
 		String csvSplitBy = ",";
@@ -167,5 +167,5 @@ public class MainController {
 			}
 		}
 		return results;
-	}*/
+	}
 }

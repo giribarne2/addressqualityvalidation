@@ -43,7 +43,7 @@
 					</tr>
 					<tbody ng-init="errors = validate(address)"
 						ng-repeat="address in addresses">
-						<tr>
+						<tr ng-class="errors.length > 0 ? 'table-danger' : 'table-success'">
 							<td><button class="btn btn-xs" data-toggle="collapse"
 									data-target="#row{{$index}}">{{errors.length}}</button></td>
 							<td>{{address.fname}}</td>
@@ -68,7 +68,7 @@
 	</div>
 	<div class="row">
 		<div class="panel-footer col-sm-8 col-sm-offset-2" align="center">Addresses
-			are checked against custom <a href="validationrules.html" target="_self">validation rules</a><br>All validation errors for addresses
+			are checked against custom <a href="validationrules.html" target="_blank">validation rules</a><br>All validation errors for addresses
 			that do not follow rules are displayed.</div>
 	</div>
 </body>

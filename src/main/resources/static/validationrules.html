@@ -1,88 +1,108 @@
-<h2 align="center">TR Data Quality Demo - Validation Rules</h2>
-<div class="container-fluid jumbotron">
-	<div>
-		<div align="left">
-			<table class="table table-condensed">
-				<tr ng-if="headers">
-					<th>#</th>
-					<th>Rule</th>
-					<th>Implementation</th>
-				</tr>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>State Abbreviation</td>
-						<td>Validates whether state name is formatted using
-							two-letter abbreviation</td>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Address Quality Check - Validation Rules</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="parserdemo.js"></script>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<h2 align="center">TR Data Quality Demo - Validation Rules</h2>
+	<div class="container-fluid jumbotron">
+		<div>
+			<div align="left">
+				<table class="table table-condensed table-hover">
+					<tr ng-if="headers">
+						<th>#</th>
+						<th>Rule</th>
+						<th>Implementation</th>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td>Ordinal Number Abbreviation</td>
-						<td>Validates whether input contains ordinal number word
-							instead of preferred ordinal number figure (1st, 2nd, 3rd, etc.)</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Business Word Abbreviation</td>
-						<td>Validates whether input contains common presentations of
-							business words as described by USPS standards seen here: <a
-							href="https://pe.usps.com/text/pub28/28apg.htm" target="_blank">Business
-								Word Abbreviations</a>
-						</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>Zip Code Format</td>
-						<td>Validates whether zip code is in Zip5-Zip4 format</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>Non-numeric character and domain validation</td>
-						<td>Validates whether input contains symbols other than
-							apostrophes, ampersand, hyphens, or domain names (.com, .net,
-							.gov, .edu, .org)</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>Carriage return validation</td>
-						<td>Validates whether input contains any carriage returns
-							(tabs, new lines, returns)</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>Upper-case validation</td>
-						<td>Validates whether input is upper case</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>Max length validation</td>
-						<td>Validates whether input contains more than 100 characters</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>Non-latin character validation</td>
-						<td>Validates whether input contains ASCII or Latin-1
-							Supplemental characters (see <a
-							href="http://www.unicode.org/charts/">Unicode Charts)</a>
-						</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>Multiple spaces validation</td>
-						<td>Validates whether input contains multiple spaces between words</td>
-					</tr>
-					<tr>
-						<td>11</td>
-						<td>Leading spaces validation</td>
-						<td>Validates whether input contains leading spaces</td>
-					</tr>
-					<tr>
-						<td>12</td>
-						<td>Trailing spaces validation</td>
-						<td>Validates whether input contains trailing spaces</td>
-					</tr>
-				</tbody>
-			</table>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>State Abbreviation</td>
+							<td>Validates whether state name is formatted using
+								two-letter abbreviation</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Ordinal Number Abbreviation</td>
+							<td>Validates whether input contains ordinal number word
+								instead of preferred ordinal number figure (1st, 2nd, 3rd, etc.)</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Business Word Abbreviation</td>
+							<td>Validates whether input contains common presentations of
+								business words as described by USPS standards seen here: <a
+								href="https://pe.usps.com/text/pub28/28apg.htm" target="_blank">Business
+									Word Abbreviations</a>
+							</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>Zip Code Format</td>
+							<td>Validates whether zip code is in Zip5-Zip4 format</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Non-numeric character and domain validation</td>
+							<td>Validates whether input contains symbols other than
+								apostrophes, ampersand, hyphens, or domain names (.com, .net,
+								.gov, .edu, .org)</td>
+						</tr>
+						<tr>
+							<td>6</td>
+							<td>Carriage return validation</td>
+							<td>Validates whether input contains any carriage returns
+								(tabs, new lines, returns)</td>
+						</tr>
+						<tr>
+							<td>7</td>
+							<td>Upper-case validation</td>
+							<td>Validates whether input is upper case</td>
+						</tr>
+						<tr>
+							<td>8</td>
+							<td>Max length validation</td>
+							<td>Validates whether input contains more than 100
+								characters</td>
+						</tr>
+						<tr>
+							<td>9</td>
+							<td>Non-latin character validation</td>
+							<td>Validates whether input contains ASCII or Latin-1
+								Supplemental characters (see <a
+								href="http://www.unicode.org/charts/">Unicode Charts)</a>
+							</td>
+						</tr>
+						<tr>
+							<td>10</td>
+							<td>Multiple spaces validation</td>
+							<td>Validates whether input contains multiple spaces between
+								words</td>
+						</tr>
+						<tr>
+							<td>11</td>
+							<td>Leading spaces validation</td>
+							<td>Validates whether input contains leading spaces</td>
+						</tr>
+						<tr>
+							<td>12</td>
+							<td>Trailing spaces validation</td>
+							<td>Validates whether input contains trailing spaces</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-</div>
+</body>
+</html>

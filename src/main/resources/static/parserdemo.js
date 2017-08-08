@@ -143,8 +143,8 @@ addressApp.controller('addressController', [ '$scope', 'fileUpload',
 			if (file != null) {
 				//console.dir(file);
 				
-				//var uploadUrl = "/uploadFile"; //boot app
-				var uploadUrl = "/addressqualityvalidation/uploadFile"; //server
+				var uploadUrl = "/uploadFile"; //boot app
+				//var uploadUrl = "/addressqualityvalidation/uploadFile"; //server
 				fileUpload.uploadFileToUrl(file, uploadUrl, {
 					successCallBack : successHandler,
 					failureCallBack : failureHandler

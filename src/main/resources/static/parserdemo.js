@@ -76,31 +76,31 @@ addressApp.controller('addressController', [ '$scope', 'fileUpload',
 			}
 
 			//ordinal numbers validation
-			if (ordinals_set.has(address.fname)) {
-				errors.push("Incorrect ordinal abbreviation");
+			var cmpnysubs = (address.company).split(" ");
+			for (var i = 0; i < cmpnysubs.length; i++) {
+				if (ordinals_set.has(cmpnysubs[i])) {
+					errors.push("Incorrect ordinal abbreviation in company name");
+				}
 			}
-			if (ordinals_set.has(address.lname)) {
-				errors.push("Incorrect ordinal abbreviation");
+			var addrsubs = (address.streetAddress).split(" ");
+			for (var i = 0; i < addrsubs.length; i++) {
+				if (ordinals_set.has(addrsubs[i])) {
+					errors.push("Incorrect ordinal abbreviation in street address");
+				}
 			}
-			if (ordinals_set.has(address.company)) {
-				errors.push("Incorrect ordinal abbreviation");
-			}
-			if (ordinals_set.has(address.streetAddress)) {
-				errors.push("Incorrect ordinal abbreviation");
-			}
-			
+
 			//business abbreviations validation
-			if (bus_set.has(address.fname)) {
-				errors.push("Non-preferred business abbreviation");
+			var cmpnybussubs = (address.company).split(" ");
+			for (var i = 0; i < cmpnybussubs.length; i++) {
+				if (bus_set.has(cmpnybussubs[i])) {
+					errors.push("Non-preferred business abbreviation in company name");
+				}
 			}
-			if (bus_set.has(address.lname)) {
-				errors.push("Non-preferred business abbreviation");
-			}
-			if (bus_set.has(address.company)) {
-				errors.push("Non-preferred business abbreviation");
-			}
-			if (bus_set.has(address.streetAddress)) {
-				errors.push("Non-preferred business abbreviation");
+			var addrbussubs = (address.streetAddress).split(" ");
+			for (var i = 0; i < addrbussubs.length; i++) {
+				if (bus_set.has(addrbussubs[i])) {
+					errors.push("Non-preferred business abbreviation in street address");
+				}
 			}
 
 			//zip code validation

@@ -43,7 +43,7 @@
 					</tr>
 					<tbody ng-init="errors = validate(address)"
 						ng-repeat="address in addresses">
-						<tr ng-class="errors.length > 0 ? 'table-danger' : 'table-success'">
+						<tr ng-class="errors.length > 0 ? 'alert alert-danger' : 'alert alert-success'">
 							<td><button class="btn btn-xs" data-toggle="collapse"
 									data-target="#row{{$index}}">{{errors.length}}</button></td>
 							<td>{{address.fname}}</td>

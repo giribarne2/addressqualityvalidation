@@ -51,7 +51,18 @@ addressApp.controller('addressController', [ '$scope', 'fileUpload',
 			"MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
 			"NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR", "RI",
 			"SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY" ];
+		var ordinals = [ "FIRST", "SECOND", "THIRD", "FOURTH", "FIFTH", "SIXTH",
+			"SEVENTH", "EIGHTH", "NINTH", "TENTH", "ELEVENTH", "TWELFTH", "THIRTEENTH",
+			"FOURTEENTH", "FIFTEENTH", "SIXTEENTH", "SEVENTEENTH", "EIGHTEENTH",
+			"NINETEENTH", "TWENTIETH", "TWENTY-FIRST", "TWENTY-SECOND", "TWENTY-THIRD",
+			"TWENTY-FOURTH", "TWENTY-FIFTH" ];
+		var businesses = [ "ABACUS", "ABOVE", "ABRASIVE", "ABRSV", "ABROAD", "ABSOLUTE",
+			"ABSTRACT", "ACADEMIC", "ACADEMY", "ACAD", "ACADEM", ];
+
+
 		var states_set = new Set(states);
+		var ordinals_set = new Set(ordinals);
+		var bus_set = new Set(businesses);
 		var MAX_NAME_LENGTH = new Number(100);
 
 
@@ -64,10 +75,38 @@ addressApp.controller('addressController', [ '$scope', 'fileUpload',
 				errors.push("Incorrect state abbreviation");
 			}
 
+			//ordinal numbers validation
+			if (ordinals_set.has(address.fname)) {
+				errors.push("Incorrect ordinal abbreviation");
+			}
+			if (ordinals_set.has(address.lname)) {
+				errors.push("Incorrect ordinal abbreviation");
+			}
+			if (ordinals_set.has(address.company)) {
+				errors.push("Incorrect ordinal abbreviation");
+			}
+			if (ordinals_set.has(address.streetAddress)) {
+				errors.push("Incorrect ordinal abbreviation");
+			}
+			
+			//business abbreviations validation
+			if (bus_set.has(address.fname)) {
+				errors.push("Non-preferred business abbreviation");
+			}
+			if (bus_set.has(address.lname)) {
+				errors.push("Non-preferred business abbreviation");
+			}
+			if (bus_set.has(address.company)) {
+				errors.push("Non-preferred business abbreviation");
+			}
+			if (bus_set.has(address.streetAddress)) {
+				errors.push("Non-preferred business abbreviation");
+			}
+
 			//zip code validation
 			var zipPattern = new RegExp(/(^\d{5}-\d{4}?$)/);
 			if (!zipPattern.test(address.zipCode)) {
-				errors.push("Invalid zip code format");
+				errors.push("Invalid Zip5-Zip4 format");
 			}
 
 			//non-numeric character and domain validation
@@ -129,8 +168,42 @@ addressApp.controller('addressController', [ '$scope', 'fileUpload',
 				errors.push("Non-latin characters in company name");
 			}
 
-			console.log(address);
-			console.log(errors);
+			//multiple spaces validation
+			var multispace = /[ ]{2,}/;
+			if (multispace.test(address.fname)) {
+				errors.push("Multiple spaces in first name");
+			}
+			if (multispace.test(address.lname)) {
+				errors.push("Multiple spaces in last name");
+			}
+			if (multispace.test(address.company)) {
+				errors.push("Multiple spaces in company name");
+			}
+
+			//leading spaces validation
+			var leadingspace = /^[ \s]/;
+			if (leadingspace.test(address.fname)) {
+				errors.push("Leading spaces in first name");
+			}
+			if (leadingspace.test(address.lname)) {
+				errors.push("Leading spaces in last name");
+			}
+			if (leadingspace.test(address.company)) {
+				errors.push("Leading spaces in company name");
+			}
+
+			//trailing spaces validation
+			var trailingspace = /[ \s]+$/;
+			if (trailingspace.test(address.fname)) {
+				errors.push("Trailing spaces in first name");
+			}
+			if (trailingspace.test(address.lname)) {
+				errors.push("Trailing spaces in last name");
+			}
+			if (trailingspace.test(address.company)) {
+				errors.push("Trailing spaces in company name");
+			}
+
 			return errors;
 		};
 
@@ -142,7 +215,7 @@ addressApp.controller('addressController', [ '$scope', 'fileUpload',
 
 			if (file != null) {
 				//console.dir(file);
-				
+
 				var uploadUrl = "/uploadFile"; //boot app
 				//var uploadUrl = "/addressqualityvalidation/uploadFile"; //server
 				fileUpload.uploadFileToUrl(file, uploadUrl, {
@@ -158,8 +231,7 @@ addressApp.controller('addressController', [ '$scope', 'fileUpload',
 				function failureHandler() {
 					console.log("upload failed");
 				}
-			}
-			else {
+			} else {
 				$scope.fileError = true;
 			}
 		};

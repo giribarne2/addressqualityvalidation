@@ -111,7 +111,7 @@ addressApp.controller('addressController', [ '$scope', 'fileUpload',
 
 			//non-numeric character and domain validation
 			var symbol = /[$-%(-,\.-/:-@{-~!"^_`\[\]]/;
-			var domain = /.COM|.NET|.GOV|.EDU|.ORG/i;
+			var domain = /\b.COM\b|\b.NET\b|\b.GOV\b|\b.EDU\b|\b.ORG\b/i;
 			if (symbol.test(address.fname) && !(domain.test(address.fname))) {
 				errors.push("Invalid non-numeric character in first name");
 			}

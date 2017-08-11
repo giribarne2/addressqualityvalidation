@@ -10,13 +10,12 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 public class AddressqualityvalidationApplication extends SpringBootServletInitializer {
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(AddressqualityvalidationApplication.class);
-    }
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(AddressqualityvalidationApplication.class);
+	}
 
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(AddressqualityvalidationApplication.class, args);
-    }
-
+	public static void main(String[] args) throws Exception {
+		SpringApplication.run(AddressqualityvalidationApplication.class, args);
+	}
 }

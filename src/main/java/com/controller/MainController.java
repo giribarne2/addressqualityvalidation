@@ -31,33 +31,29 @@ public class MainController {
 	// "/usr/apache/apache-tomcat-8.5.14/uploads/";
 
 	// local save directory
-	//private static String UPLOADED_FOLDER = "C:\\Users\\iribarneg\\Documents\\workspace-sts\\addressqualityvalidation\\src\\main\\resources\\uploads\\";
-	//private static String CSV_FILE;
-
-	/*@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-	@ResponseBody
-	public String singleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-		List<Entry> response;
-		try {
-
-			// Get the file and save it somewhere
-			byte[] bytes = file.getBytes();
-			Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-			Files.write(path, bytes);
-			CSV_FILE = UPLOADED_FOLDER + file.getOriginalFilename();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		response = parser(CSV_FILE);
-
-		Gson gson = new Gson();
-		String json = gson.toJson(response);
-
-		return json;
-	}*/
-	
+	// private static String UPLOADED_FOLDER =
+	// "C:\\Users\\iribarneg\\Documents\\workspace-sts\\addressqualityvalidation\\src\\main\\resources\\uploads\\";
+	// private static String CSV_FILE;
+	/*
+	 * @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String singleFileUpload(@RequestParam("file")
+	 * MultipartFile file, RedirectAttributes redirectAttributes) { List<Entry>
+	 * response; try {
+	 * 
+	 * // Get the file and save it somewhere byte[] bytes = file.getBytes(); Path
+	 * path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+	 * Files.write(path, bytes); CSV_FILE = UPLOADED_FOLDER +
+	 * file.getOriginalFilename();
+	 * 
+	 * } catch (IOException e) { e.printStackTrace(); }
+	 * 
+	 * response = parser(CSV_FILE);
+	 * 
+	 * Gson gson = new Gson(); String json = gson.toJson(response);
+	 * 
+	 * return json; }
+	 */
 
 	public List<Entry> parser(String filename) {
 
@@ -95,20 +91,18 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return results;
-	}
-		@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	}
+
+	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	@ResponseBody
 	public String blobFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-		//CSVFile csvFile = new CSVFile();
 		List<Entry> response;
 		byte[] bytes = null;
 		try {
 
 			// Get the file and save it somewhere
 			bytes = file.getBytes();
-			//csvFile.setName(file.getOriginalFilename());
-			//csvFile.setFiledata(bytes);			
-			//session.save
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -120,7 +114,6 @@ public class MainController {
 
 		return json;
 	}
-	
 
 	public List<Entry> blobParser(byte[] filedata) {
 
@@ -166,6 +159,7 @@ public class MainController {
 				ex.printStackTrace();
 			}
 		}
+		
 		return results;
 	}
 }
